@@ -71,7 +71,7 @@ fn part2(input: &str) -> usize {
                         false
                     }
                 }),
-                a => false,
+                _ => false,
             }
         }),
         ("ecl", &|x| {
@@ -86,10 +86,7 @@ fn part2(input: &str) -> usize {
         .iter()
         .filter(|passport| {
             REQUIRED_FIELDS.iter().all(|(field, predicate)| {
-                passport.get(field).map_or(false, |value| {
-                    let ok = predicate(value);
-                    ok
-                })
+                passport.get(field).map_or(false, |value| predicate(value))
             })
         })
         .count()
