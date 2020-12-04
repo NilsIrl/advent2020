@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-const required_fields: [&str; 7] = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"];
+const REQUIRED_FIELDS: [&str; 7] = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"];
 
 /*
 #[aoc_generator(day4)]
@@ -22,10 +22,9 @@ fn part1(input: &str) -> usize {
     passports
         .iter()
         .filter(|passport| {
-            required_fields
+            REQUIRED_FIELDS
                 .iter()
-                .map(|field| passport.contains_key(field))
-                .all(|x| x)
+                .all(|field| passport.contains_key(field))
         })
         .count()
 }
