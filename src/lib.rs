@@ -1,4 +1,4 @@
-#![feature(str_split_once)]
+#![feature(str_split_once, destructuring_assignment)]
 #[macro_use]
 extern crate aoc_runner_derive;
 
@@ -13,5 +13,6 @@ mod day9;
 
 mod day10;
 mod day11;
+mod day12;
 
 aoc_runner_derive::aoc_lib! { year = 2020 }
