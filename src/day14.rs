@@ -35,6 +35,38 @@ fn part1(input: &str) -> u64 {
     map.values().sum()
 }
 
+#[aoc(day14, part1, vec)]
+fn part1_vec(input: &str) -> u64 {
+    let mut map = HashMap::new();
+    let mut zero_indices = Vec::with_capacity(36);
+    let mut one_indices = Vec::with_capacity(36);
+
+    for line in input.lines() {
+        if line.starts_with("mask") {
+            zero_indices.clear();
+            one_indices.clear();
+            for (i, bit) in line[7..].chars().rev().enumerate() {
+                match bit {
+                    '0' => zero_indices.push(i),
+                    '1' => one_indices.push(i),
+                    _ => (),
+                }
+            }
+        } else {
+            let (index, mut value) = parse_assignment(line);
+            for zero_i in zero_indices.iter() {
+                value &= !(1 << zero_i);
+            }
+            for one_i in one_indices.iter() {
+                value |= 1 << one_i
+            }
+            map.insert(index, value);
+        }
+    }
+
+    map.values().sum()
+}
+
 #[aoc(day14, part2)]
 fn part2(input: &str) -> u64 {
     let mut map = HashMap::new();
