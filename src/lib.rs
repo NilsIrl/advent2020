@@ -15,5 +15,6 @@ mod day10;
 mod day11;
 mod day12;
 mod day14;
+mod day15;
 
 aoc_runner_derive::aoc_lib! { year = 2020 }
